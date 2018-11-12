@@ -8,36 +8,29 @@ import android.os.Parcelable;
  */
 
 public class MahasiswaModel implements Parcelable {
-    private int id;
+    private String id;
     private String name;
     private String nim;
     private String url;
-    private String tanggal;
 
     public MahasiswaModel(){
 
     }
 
-    public MahasiswaModel(String name, String nim,String url,String tanggal){
+    public MahasiswaModel(String name, String nim,String url){
         this.name = name;
         this.nim = nim;
-        this.url = url;
-        this.tanggal = tanggal;
-    }
+        this.url = url; }
 
-    public MahasiswaModel(int id, String name, String nim,String url,String tanggal){
+    public MahasiswaModel(String id, String name, String nim,String url){
         this.id = id;
         this.name = name;
         this.nim = nim;
         this.url = url;
-        this.tanggal = tanggal;
     }
 
     public String getUrl() {
         return url;
-    }
-    public String gettanggal() {
-        return tanggal;
     }
 
     public String getNim() {
@@ -59,15 +52,11 @@ public class MahasiswaModel implements Parcelable {
     public void setUrl(String url) {
         this.url = url;
     }
-    public void settanggal(String tanggal) {
-        this.tanggal = tanggal;
-    }
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -78,19 +67,17 @@ public class MahasiswaModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.id);
+        dest.writeString(this.id);
         dest.writeString(this.name);
         dest.writeString(this.nim);
         dest.writeString(this.url);
-        dest.writeString(this.tanggal);
     }
 
     protected MahasiswaModel(Parcel in) {
-        this.id = in.readInt();
+        this.id = in.readString();
         this.name = in.readString();
         this.nim = in.readString();
         this.url = in.readString();
-        this.tanggal = in.readString();
     }
 
     public static final Creator<MahasiswaModel> CREATOR = new Creator<MahasiswaModel>() {

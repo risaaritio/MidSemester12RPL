@@ -17,7 +17,6 @@ public class DatabaseContract {
         // Mahasiswa nim
         static String NIM = "nim";
         static String URL = "url";
-        static String TANGGAL = "tanggal";
 
     }
 }

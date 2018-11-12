@@ -9,7 +9,7 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="99dp"
+        android:layout_height="120dp"
         android:elevation="5dp"
         app:cardCornerRadius="2dp"
         android:padding="2dp">
@@ -34,33 +34,39 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginLeft="100dp"/>
-        <Button
-            android:id="@+id/btn_detail"
-            android:layout_width="90dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:background="#1456c0"
-            android:text="DETAIL"
-            android:textColor="#faf9f9"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="10dp"/>
-        <Button
-            android:id="@+id/btn_share"
-            android:layout_width="90dp"
-            android:layout_height="40dp"
-            android:layout_gravity="right"
-            android:background="#1456c0"
-            android:text="Share"
-            android:textColor="#faf9f9"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginRight="20dp"/>
-        <Button
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/btndelete"
-            android:background="@android:color/transparent"/>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="45dp">
 
+            <Button
+                android:id="@+id/btn_detail"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="12dp"
+                android:background="#1456c0"
+                android:text="DETAIL"
+                android:textColor="#faf9f9" />
+            <Button
+                android:id="@+id/btn_share"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:background="#1456c0"
+                android:text="Share"
+                android:textColor="#faf9f9"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="12dp"/>
+        </LinearLayout>
+        <Button
+            android:id="@+id/btndelete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="260dp"
+            android:text="delete"
+            android:textColor="#000"
+            android:background="@android:color/transparent"/>
     </android.support.v7.widget.CardView>
 
 </RelativeLayout>

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.rplrus25.midsemester12rpl.database.DatabaseHelper;
 import com.example.rplrus25.midsemester12rpl.database.MahasiswaHelper;
 import com.example.rplrus25.midsemester12rpl.database.MahasiswaModel;
 
@@ -28,11 +30,9 @@ public class Detail_Name extends AppCompatActivity {
     String name;
     String deskripsi;
     String gambar;
-    String password;
-    String tanggal;
-    String Trailer;
     String move_id ;
     MahasiswaHelper mahasiswaHelper;
+    DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +73,7 @@ public class Detail_Name extends AppCompatActivity {
                 if(flag){
                     mahasiswaHelper.open();
                     mahasiswaHelper.beginTransaction();
-                    MahasiswaModel m = new MahasiswaModel(name, deskripsi, gambar,tanggal);
+                    MahasiswaModel m = new MahasiswaModel(name, deskripsi, gambar);
                     mahasiswaHelper.insertTransaction(m);
                     mahasiswaHelper.setTransactionSuccess();
                     mahasiswaHelper.endTransaction();
@@ -82,37 +82,16 @@ public class Detail_Name extends AppCompatActivity {
                     fab.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_favorite_black_24dp));
                     flag = false;
                 }else if(!flag){
+                    mahasiswaHelper.open();
+                    mahasiswaHelper.beginTransaction();
+                    int a = mahasiswaHelper.delete(name);
+                    mahasiswaHelper.endTransaction();
+                    mahasiswaHelper.close();
                     fab.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_favorite_border_black_24dp));
                     flag = true;
                 }
             }
         });
     }
-//    @SuppressLint("StaticFieldLeak")
-//    public class myFab extends AsyncTask<Void, Void, Boolean> {
-//
-//
-//        @Override
-//        protected void onPreExecute() {
-//
-//        }
-//        @Override
-//        protected Boolean doInBackground(Void... params) {
-//            Boolean suksesLoad=true;
-//            mahasiswaHelper.open();
-//            mahasiswaHelper.beginTransaction();
-//            MahasiswaModel m = new MahasiswaModel(name, deskripsi, gambar,password);
-//
-//            mahasiswaHelper.insertTransaction(m);
-//            mahasiswaHelper.setTransactionSuccess();
-//            mahasiswaHelper.close();
-//            return suksesLoad;
-//        }
-//        @Override
-//        protected void onPostExecute(Boolean suskesLoad){
-//            fab.setEnabled(false);
-//            super.onPostExecute(suskesLoad);
-//        }
-//    }
 
 }

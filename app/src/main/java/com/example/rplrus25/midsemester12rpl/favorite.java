@@ -33,18 +33,17 @@ public class favorite extends AppCompatActivity {
         Rview.setLayoutManager(Layout);
         mahasiswaHelper = new MahasiswaHelper(getApplicationContext());
         mahasiswaHelper.open();
-        models = new ArrayList<>();
-
-        if (mahasiswaHelper.getAllData() == null){
-            TextData.setVisibility(View.VISIBLE);
-        }
-        else if (mahasiswaHelper.getAllData() !=null){
-            models = mahasiswaHelper.getAllData();
-            Rview.setVisibility(View.VISIBLE);
-            Rview.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-            Rview.setAdapter(adapter);
-        }
+        Rview.setVisibility(View.VISIBLE);
         models = mahasiswaHelper.getAllData();
 
+        adapter = new ModelAdapter(getApplicationContext(), models);
+        Rview.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        Rview.setAdapter(adapter);
+
+    }
+    @Override
+    public  void  onBackPressed(){
+        super.onBackPressed();
+        finish();
     }
 }

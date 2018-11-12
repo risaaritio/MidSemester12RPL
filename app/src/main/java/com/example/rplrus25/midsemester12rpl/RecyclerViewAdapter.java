@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.rplrus25.midsemester12rpl.database.DatabaseHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,33 +70,35 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
                 Toast.makeText(context, "Segera Datang", Toast.LENGTH_SHORT).show();
             }
         });
-//        holder.btndelete.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                AlertDialog.Builder builder= new AlertDialog.Builder(context);
-//                builder.setTitle("DELETE");
-//                builder.setCancelable(true);
-//                builder.setMessage("Confirm that you want to delete this bookmark?")
-//                        .setPositiveButton("YES", new DialogInterface.OnClickListener() {
-//
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int i) {
-//
-////                                    deleteNote(position);
-//                            }
-//                        });
-//                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int i) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//                AlertDialog alert = builder.create();
-//                alert.show();
-//
-//            }
-//        });
-//
+        holder.btndelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder= new AlertDialog.Builder(context);
+                builder.setTitle("DELETE");
+                builder.setCancelable(true);
+                builder.setMessage("Confirm that you want to delete this bookmark?")
+                        .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+
+                                ItemObjectArrayList.remove(position);
+                                notifyItemRemoved(position);
+                                notifyItemChanged(position,ItemObjectArrayList.size());
+
+                            }
+                        });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.create();
+                builder.show();
+
+            }
+        });
 
     }
 

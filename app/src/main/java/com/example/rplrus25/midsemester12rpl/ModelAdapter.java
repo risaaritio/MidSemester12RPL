@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.rplrus25.midsemester12rpl.database.DatabaseHelper;
+import com.example.rplrus25.midsemester12rpl.database.MahasiswaHelper;
 import com.example.rplrus25.midsemester12rpl.database.MahasiswaModel;
 
 import java.util.ArrayList;
@@ -20,10 +22,12 @@ import java.util.List;
 public class ModelAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
     private ArrayList<MahasiswaModel> mahasiswaModelArrayList;
     Context context;
+    MahasiswaHelper mahasiswaHelper;
 
     public ModelAdapter(Context context, ArrayList<MahasiswaModel> mahasiswaModelArrayList) {
         this.mahasiswaModelArrayList = mahasiswaModelArrayList;
         this.context = context;
+        mahasiswaHelper = new MahasiswaHelper(context);
     }
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -68,6 +72,23 @@ public class ModelAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
                 Toast.makeText(context, "Segera Datang", Toast.LENGTH_SHORT).show();
             }
         });
+        holder.btndelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final  String name = ItemObject.getName();
+                mahasiswaHelper.open();
+                mahasiswaHelper.beginTransaction();
+                mahasiswaHelper.delete(name);
+                mahasiswaHelper.setTransactionSuccess();
+                mahasiswaHelper.endTransaction();
+                mahasiswaHelper.close();
+                mahasiswaModelArrayList.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position,mahasiswaModelArrayList.size());
+
+            }
+        });
+
 
     }
 

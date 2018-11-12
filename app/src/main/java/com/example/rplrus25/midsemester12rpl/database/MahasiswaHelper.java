@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
@@ -13,7 +14,6 @@ import java.util.ArrayList;
 import static android.provider.BaseColumns._ID;
 import static com.example.rplrus25.midsemester12rpl.database.DatabaseContract.MahasiswaColumns.NAMA;
 import static com.example.rplrus25.midsemester12rpl.database.DatabaseContract.MahasiswaColumns.NIM;
-import static com.example.rplrus25.midsemester12rpl.database.DatabaseContract.MahasiswaColumns.TANGGAL;
 import static com.example.rplrus25.midsemester12rpl.database.DatabaseContract.MahasiswaColumns.URL;
 import static com.example.rplrus25.midsemester12rpl.database.DatabaseContract.TABLE_NAME;
 
@@ -25,7 +25,6 @@ public class MahasiswaHelper {
 
     private Context context;
     private DatabaseHelper dataBaseHelper;
-
     private SQLiteDatabase database;
 
     public MahasiswaHelper(Context context){
@@ -56,12 +55,10 @@ public class MahasiswaHelper {
         if (cursor.getCount()>0) {
             do {
                 mahasiswaModel = new MahasiswaModel();
-                mahasiswaModel.setId(cursor.getInt(cursor.getColumnIndexOrThrow(_ID)));
+                mahasiswaModel.setId(cursor.getString(cursor.getColumnIndexOrThrow(_ID)));
                 mahasiswaModel.setName(cursor.getString(cursor.getColumnIndexOrThrow(NAMA)));
                 mahasiswaModel.setNim(cursor.getString(cursor.getColumnIndexOrThrow(NIM)));
                 mahasiswaModel.setUrl(cursor.getString(cursor.getColumnIndexOrThrow(URL)));
-                mahasiswaModel.settanggal(cursor.getString(cursor.getColumnIndexOrThrow(TANGGAL)));
-
                 arrayList.add(mahasiswaModel);
                 cursor.moveToNext();
 
@@ -84,11 +81,10 @@ public class MahasiswaHelper {
         if (cursor.getCount()>0) {
             do {
                 mahasiswaModel = new MahasiswaModel();
-                mahasiswaModel.setId(cursor.getInt(cursor.getColumnIndexOrThrow(_ID)));
+                mahasiswaModel.setId(cursor.getString(cursor.getColumnIndexOrThrow(_ID)));
                 mahasiswaModel.setName(cursor.getString(cursor.getColumnIndexOrThrow(NAMA)));
                 mahasiswaModel.setNim(cursor.getString(cursor.getColumnIndexOrThrow(NIM)));
                 mahasiswaModel.setUrl(cursor.getString(cursor.getColumnIndexOrThrow(URL)));
-                mahasiswaModel.settanggal(cursor.getString(cursor.getColumnIndexOrThrow(TANGGAL)));
                 arrayList.add(mahasiswaModel);
                 cursor.moveToNext();
 
@@ -126,15 +122,21 @@ public class MahasiswaHelper {
      * @param mahasiswaModel inputan model mahasiswa
      */
     public void insertTransaction(MahasiswaModel mahasiswaModel){
-        String sql = "INSERT INTO "+TABLE_NAME+" ("+NAMA+", "+NIM+", "+URL+", "+TANGGAL
-                +") VALUES (?, ? , ? , ?)";
+        String sql = "INSERT INTO "+TABLE_NAME+" ("+NAMA+", "+NIM+", "+URL
+                +") VALUES (?, ? , ?)";
         SQLiteStatement stmt = database.compileStatement(sql);
         stmt.bindString(1, mahasiswaModel.getName());
         stmt.bindString(2, mahasiswaModel.getNim());
         stmt.bindString(3, mahasiswaModel.getUrl());
-        stmt.bindString(4, mahasiswaModel.gettanggal());
         stmt.execute();
         stmt.clearBindings();
-        Log.d("sukses", "insertTransaction: ");
+        Log.d("sukses", "insertTransaction: "+mahasiswaModel.getNim());
+    }
+    public  int delete(String name){
+        SQLiteDatabase db = dataBaseHelper.getWritableDatabase();
+        String[] whereArgs = {name};
+
+        int count = db.delete(TABLE_NAME, _ID+" = ?",whereArgs);
+        return count;
     }
 }
