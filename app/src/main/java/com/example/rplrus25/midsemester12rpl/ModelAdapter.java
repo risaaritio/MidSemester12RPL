@@ -59,7 +59,6 @@ public class ModelAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
                 i.putExtra("id" , id);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(i);
-
             }
         });
         holder.btn_share.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +87,6 @@ public class ModelAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
 
             }
         });
-
 
     }
 

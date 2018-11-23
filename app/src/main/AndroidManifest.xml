@@ -12,15 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Home" />
         <activity android:name=".Detail_Name" />
-        <activity android:name=".favorite"></activity>
+        <activity android:name=".favorite" />
     </application>
 
 </manifest>
