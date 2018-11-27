@@ -52,6 +52,19 @@
         android:textColor="#faf9f9"
         android:layout_marginTop="20dp"/>
 
+    <com.google.android.gms.common.SignInButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sign_in_button"
+        android:layout_marginTop="40dp"/>
+
+    <!--<com.facebook.login.widget.LoginButton-->
+    <!--android:id="@+id/facebook_loginButton"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:layout_marginTop="20dp"-->
+    <!--facebook:com_facebook_login_text="Login with Facebook"/>-->
 
 
 

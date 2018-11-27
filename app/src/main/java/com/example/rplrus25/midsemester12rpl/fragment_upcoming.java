@@ -25,14 +25,14 @@ import retrofit2.Response;
 
 
 public class fragment_upcoming extends Fragment {
-    public ArrayList<Result> ItemObjectArrayList;
+    public ArrayList<Result> ItemObjectArrayList=new ArrayList<>();
     RecyclerView recyclerView;
     MahasiswaHelper mahasiswaHelper;
     View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_fragment_nowplaying, container, false);
-        recyclerView =(RecyclerView) view.findViewById(R.id.nowPlaying);
+        view = inflater.inflate(R.layout.fragment_fragment_upcoming, container, false);
+        recyclerView =(RecyclerView) view.findViewById(R.id.upcoming);
         mahasiswaHelper = new MahasiswaHelper(view.getContext());
         load_data_from_json();;
        return view;

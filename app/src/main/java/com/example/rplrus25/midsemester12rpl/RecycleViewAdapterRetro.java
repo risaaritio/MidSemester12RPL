@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 public class RecycleViewAdapterRetro extends RecyclerView.Adapter<RecyclerViewHolder> {
-    private ArrayList<ItemObject2> ItemObjectArrayList;
+    private ArrayList<Result> ItemObjectArrayList;
     Context context;
 
     public RecycleViewAdapterRetro(Context context, ArrayList<Result> ItemObjectArrayList) {
@@ -33,7 +33,7 @@ public class RecycleViewAdapterRetro extends RecyclerView.Adapter<RecyclerViewHo
 
     @Override
     public void onBindViewHolder(final RecyclerViewHolder holder, final int position) {
-        final ItemObject2 ItemObject= ItemObjectArrayList.get(position);
+        final Result ItemObject= ItemObjectArrayList.get(position);
         Glide.with(context)
                 .load(only_url.url+ItemObject.getPosterPath())
                 .into(holder.ic_launcher);
@@ -49,7 +49,7 @@ public class RecycleViewAdapterRetro extends RecyclerView.Adapter<RecyclerViewHo
                 Intent i = new Intent(context.getApplicationContext(),Detail_Name.class);
                 i.putExtra("name" , name);
                 i.putExtra("deskripsi" , deskripsi);
-                i.putExtra("gambar" , gambar);
+                i.putExtra("gambar" , only_url.url+gambar);
 //                i.putExtra("id" , id);
                 context.startActivity(i);
 

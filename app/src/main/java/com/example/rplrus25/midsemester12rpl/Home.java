@@ -19,6 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ProgressBar;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+
 import java.util.ArrayList;
 
 public class Home extends AppCompatActivity {
@@ -37,7 +39,7 @@ public class Home extends AppCompatActivity {
 
     public ArrayList<ItemObject> ItemObjectArrayList;
 
-
+    private GoogleSignInClient googleSignInClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
